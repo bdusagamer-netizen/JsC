@@ -1,0 +1,5 @@
+# ninja log v7
+232	3982	7960990432372627	CMakeFiles/example.dir/examples/basic_view.cpp.obj	7ea6e67e039fe816
+185	10041	7960990432301015	CMakeFiles/jshtmlloader.dir/src/js_html_loader.cpp.obj	5c7cd43f6beae69e
+10046	10826	7960990530562817	libjshtmlloader.a	fa1f8e4d217d040
+31	1066	7960991891485576	example.exe	1d901ff2db041b06

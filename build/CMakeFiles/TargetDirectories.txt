@@ -1,0 +1,4 @@
+C:/Users/dusab/projects/html-js-loader/build/CMakeFiles/jshtmlloader.dir
+C:/Users/dusab/projects/html-js-loader/build/CMakeFiles/example.dir
+C:/Users/dusab/projects/html-js-loader/build/CMakeFiles/edit_cache.dir
+C:/Users/dusab/projects/html-js-loader/build/CMakeFiles/rebuild_cache.dir
