@@ -1,40 +1,41 @@
 cmake_minimum_required(VERSION 3.16)
-project(js_html_loader LANGUAGES CXX)
+project(JsC VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# ---------------------------------------------------------
-# Include paths
-# ---------------------------------------------------------
-include_directories(
-    ${CMAKE_SOURCE_DIR}/include
-    ${CMAKE_SOURCE_DIR}/deps/webview/core/include
-    "C:/WebView2SDK/build/native/include"
+add_library(JsC STATIC
+    src/jsc.cpp
+    include/jsc/jsc.hpp
 )
 
-# ---------------------------------------------------------
-# Library: jshtmlloader
-# ---------------------------------------------------------
-add_library(jshtmlloader STATIC
-    src/js_html_loader.cpp
+target_include_directories(JsC
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
 )
 
-# Link required Windows libraries
-target_link_libraries(jshtmlloader
-    version
-    shlwapi
+target_link_libraries(JsC
+    PUBLIC
+        version
+        shlwapi
 )
 
-# ---------------------------------------------------------
-# Example executable
-# ---------------------------------------------------------
-add_executable(example
-    examples/basic_view.cpp
+include(GNUInstallDirs)
+
+install(TARGETS JsC
+    EXPORT JsCTargets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-target_link_libraries(example
-    jshtmlloader
-    version
-    shlwapi
+install(DIRECTORY include/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(EXPORT JsCTargets
+    FILE JsCConfig.cmake
+    NAMESPACE JsC::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/JsC
 )
